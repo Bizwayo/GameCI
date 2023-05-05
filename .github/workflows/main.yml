@@ -20,17 +20,13 @@ jobs:
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
-            
-      # Activate
-      - name: Unity - Activate
-        uses: game-ci/unity-activate@v2.0.0
 
       # Test
-      - name: Run tests
-        uses: game-ci/unity-test-runner@v2
+      - uses: game-ci/unity-test-runner@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
+          projectPath: Bizwayo/GameCI
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       # Build
